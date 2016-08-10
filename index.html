@@ -1,0 +1,83 @@
+<html lang="en">
+    <head>
+        <base href="/">
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="">
+        <meta name="robots" content="">
+        <link rel="stylesheet" type="text/css" href="">
+        <link rel="shortcut icon" href="">
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    </head>
+    <body ng-app="ListBuilderApp" ng-controller="mainCtrl">
+        <div>
+            <div>
+                <p>Enter your list below in paragraph form. Split it up by commas and your list will be created automatically.</p>
+                <textarea placeholder="Enter list" autofocus="TRUE" rows="10" cols="80" ng-model="initialList"></textarea>
+                <p>{{ initialList }} </p>
+            </div>
+            <button ng-click="formList()">Form List</button>
+            <div id="listContainer">
+                <ul id="finalList"><!--<ul ng-bind="finalList">-->
+                    
+                </ul>
+                <div class="listItem" ng-repeat="item in list">
+                    <tableList info="item"></tableList>
+                </div>
+            </div>
+        </div>
+        <script>
+            var app = angular.module('ListBuilderApp', []);
+            app.controller('mainCtrl', function($scope){
+               $scope.initialList = "";
+               $scope.finalList = [];
+               $scope.formList = function(){
+                   var initList = $scope.initialList;
+                   var DOMlist = document.getElementById("finalList");
+                  //declare array
+                  var array = initList.split(",");
+                  if(array.length > 0){
+                        //insert into final array
+                        for(var i = 0, len = array.length;i < len; i++){                    
+                            $scope.createListElement(array[i]);
+                        }
+                        //create list on page
+                        for(var i = 0, len = $scope.finalList.length; i < len; i++){
+                            var li = document.createElement("li");
+                            li.innerHTML = $scope.finalList[i];
+                            DOMlist.appendChild(li);
+                        }
+                  }
+                  
+               } 
+               //scan/clean the input, insert into final array and create the table on screen
+               $scope.createListElement = function(listItem){
+                   
+                   //check item before inserting into final array?
+                   if(listItem == null || listItem == ""){
+                       return;
+                   }
+                   //trim and insert into final array
+                   listItem = listItem.trim();
+                   $scope.finalList.push(listItem);
+                   
+               }
+               
+            });
+            app.directive("tableList", function(){
+               return {
+                   restrict: "E",
+                   scope: {
+                       info: '='
+                   },
+                   templateUrl:'js/tableList.html'
+               }; 
+            });
+        </script>
+       
+        <!--<script src="js/app.js"></script>
+        <script src="js/Controller.js"></script>-->
+    </body>
+</html>
+
