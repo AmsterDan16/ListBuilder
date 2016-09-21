@@ -10,6 +10,16 @@
         <link rel="shortcut icon" href="">
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     </head>
+    <style>
+        .quantitInput{
+            width:50%;
+            float:left;
+        }
+        .nameInput{
+            width:50%;
+            float:right;
+        }
+    </style>
     <body ng-app="ListBuilderApp" ng-controller="mainCtrl">
         <div>
             <div>
@@ -22,8 +32,19 @@
                 <ul id="finalList"><!--<ul ng-bind="finalList">-->
                     
                 </ul>
-                <div class="listItem" ng-repeat="item in list">
-                    <tableList info="item"></tableList>
+                <div class="listItem" ng-repeat="item in finalList">
+                    <!--{{ item }}-->
+                    <!--<tableList info="item"></tableList>-->
+                    <div class="listRow">
+                        <button type="button" ng-click="removeItem(item)">Remove</button>
+                        <input type="hidden" id="rank"" value="{{item.listIndex}}" type="number">
+                        <div class="quantityInput">
+                            <input name="quantity" class="form-control" placeholder="quantity" type="number" ng-model="item.quantity">
+                        </div>
+                        <div class="nameInput">
+                            <input name="name" type="text" class="form-control" placeholder="name" ng-model="item.name">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,27 +53,44 @@
             app.controller('mainCtrl', function($scope){
                $scope.initialList = "";
                $scope.finalList = [];
+               var basicListItem = {
+                   listIndex: 0,
+                   quantity: 1,
+                   name: "New"
+               };
                $scope.formList = function(){
                    var initList = $scope.initialList;
                    var DOMlist = document.getElementById("finalList");
+                   //clear DOMlist and finalList to refresh upon resubmit
+                   while(DOMlist.firstChild){
+                       DOMlist.removeChild(DOMlist.firstChild);
+                   }
+                   $scope.finalList = [];
                   //declare array
                   var array = initList.split(",");
                   if(array.length > 0){
                         //insert into final array
                         for(var i = 0, len = array.length;i < len; i++){                    
-                            $scope.createListElement(array[i]);
+                            $scope.createListElement(array[i], i);
                         }
-                        //create list on page
-                        for(var i = 0, len = $scope.finalList.length; i < len; i++){
-                            var li = document.createElement("li");
-                            li.innerHTML = $scope.finalList[i];
-                            DOMlist.appendChild(li);
-                        }
+                        //create list on page (non angular)
+                        // for(var i = 0, len = $scope.finalList.length; i < len; i++){
+                        //     var li = document.createElement("li");
+                        //     li.innerHTML = $scope.finalList[i];
+                        //     DOMlist.appendChild(li);
+                        // }
                   }
                   
                } 
+               $scope.removeItem = function(item){
+                   var itemIndex = $scope.finalList.indexOf(item);
+                   $scope.finalList.splice(itemIndex, 1);
+               }
+            //    $scope.addListItem = function (){
+            //        ver newListItem
+            //    }
                //scan/clean the input, insert into final array and create the table on screen
-               $scope.createListElement = function(listItem){
+               $scope.createListElement = function(listItem, index){
                    
                    //check item before inserting into final array?
                    if(listItem == null || listItem == ""){
@@ -60,18 +98,25 @@
                    }
                    //trim and insert into final array
                    listItem = listItem.trim();
-                   $scope.finalList.push(listItem);
+                   var newItem = angular.copy(basicListItem);
+                   newItem.name = listItem;
+                   newItem.listIndex = index;
+                   $scope.finalList.push(newItem);
                    
                }
                
             });
             app.directive("tableList", function(){
                return {
-                   restrict: "E",
                    scope: {
                        info: '='
                    },
-                   templateUrl:'js/tableList.html'
+                   templateUrl:'js/tableList.html',
+                   controller: function( $scope){
+                       $scope.add = function() {
+
+                       }
+                   }
                }; 
             });
         </script>
