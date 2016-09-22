@@ -24,10 +24,14 @@
         <div>
             <div>
                 <p>Enter your list below in paragraph form. Split it up by commas and your list will be created automatically.</p>
-                <textarea placeholder="Enter list" autofocus="TRUE" rows="10" cols="80" ng-model="initialList"></textarea>
+                <textarea id="listEntryArea" placeholder="Enter list" autofocus="TRUE" rows="10" cols="80" ng-model="initialList"></textarea>
                 <p>{{ initialList }} </p>
             </div>
             <button ng-click="formList()">Form List</button>
+            <div id="listModifiers">
+                <button ng-click="addListItem()">Add Item</button>
+                <button ng-click="clearAll()">Clear List</button>
+            </div>
             <div id="listContainer">
                 <ul id="finalList"><!--<ul ng-bind="finalList">-->
                     
@@ -49,6 +53,9 @@
             </div>
         </div>
         <script>
+            var listModifiersContainer = document.getElementById("listModifiers");
+            listModifiersContainer.style.visibility = 'hidden';
+
             var app = angular.module('ListBuilderApp', []);
             app.controller('mainCtrl', function($scope){
                $scope.initialList = "";
@@ -80,15 +87,23 @@
                         //     DOMlist.appendChild(li);
                         // }
                   }
-                  
+                  listModifiersContainer.style.visibility = 'visible';
                } 
                $scope.removeItem = function(item){
                    var itemIndex = $scope.finalList.indexOf(item);
                    $scope.finalList.splice(itemIndex, 1);
                }
-            //    $scope.addListItem = function (){
-            //        ver newListItem
-            //    }
+               $scope.addListItem = function (){
+                   var newListItem = angular.copy(basicListItem);
+                   //add to top of list
+                   $scope.finalList.splice(0,0, newListItem);
+               }
+               $scope.clearAll = function(){
+                   $scope.initialList = [];
+                   $scope.finalList = [];//.splice(0, $scope.finalList.length);
+                   document.getElementById('listEntryArea').text = "";
+                   listModifiersContainer.style.visibility = 'hidden';
+               }
                //scan/clean the input, insert into final array and create the table on screen
                $scope.createListElement = function(listItem, index){
                    
