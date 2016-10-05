@@ -249,7 +249,93 @@
             
         }
         @media screen and (max-width:768px){
-
+            #listEntry{
+                width:100%;
+                margin:0 auto;
+                text-align:center;
+            }
+                #listEntry #listEntryArea{
+                    width:100%;
+        
+                }
+            #formList{
+                margin:0 auto;
+                width:80%;
+                height:40px;
+                font-size:15;
+            }
+            #listSectionContainer{
+                padding-top:30px;
+                width:100%;
+                margin:0 auto;
+            }
+            #additionalButtons{
+                width:90%;
+                margin:0 auto;
+                align:center;
+                padding-bottom:30px;
+            }
+            #additionalButtons #collapseBtnContainer{
+                margin:0 auto;
+                width:100%;
+            }
+                #additionalButtons #collapseBtnContainer button{
+                    width:100%;
+                    margin:0 auto;
+                    font-size:15;
+                }
+            #additionalButtons #listModifiersContainer{
+                margin:0 auto;
+            }
+                #additionalButtons #listModifiersContainer #add_btn{
+                    width:100%;
+                    margin-bottom:15px;
+                    font-size:15;
+                }
+                #additionalButtons #listModifiersContainer #clear_btn{
+                    width:100%;
+                    font-size:15;
+                }
+            .listRow{
+                width:100%;
+                margin:0 auto;
+                padding-bottom:30px;
+               
+            }
+                .listRow .removeButton{
+                    min-width:70px;
+                    float:left;
+                    width:15%;
+                    height:40px;
+                    font-size:15;
+                    margin-right:5px;
+                }
+                .listRow .qtyInputContainer{
+                    float:left;
+                    width:20%;
+                }
+                    .listRow .qtyInputContainer .qtyInput{
+                        width:40%;
+                        /*float:right;*/
+                    }
+                .listRow .nameInputContainer{
+                    float:left;
+                    width:50%;
+                }
+                    .listRow .nameInputContainer .nameInput{
+                        width:100%;
+                    }
+                
+                .listRow .completedInputContainer{
+                    float:left;
+                  
+                }
+                .listRow .listInput{
+                    height:40px;
+                    margin:0 auto;
+                    font-size:15;
+                }
+  
         }
     </style>
     <body ng-app="ListBuilderApp" ng-controller="mainCtrl">
