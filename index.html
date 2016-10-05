@@ -4,79 +4,24 @@
         <meta charset="utf-8">
         <title></title>
         <meta name="description" content="">
-        <meta name="viewport" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="">
-        <link rel="stylesheet" type="text/css" href="">
+        
         <link rel="shortcut icon" href="">
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="listbuilder.css"/>
     </head>
     <style>
-        body{
-            width:90%;
-            margin:0 auto;
-        }
         .button{
             padding:5px;
             background-color:#65b1f0;
             font-weight:"Bold";
             color:#ffffff;
         }
-            .button:hover{
-                background-color:#c2e0f9;
-                color:#ffffff;
-            }
         .listItem{
             margin:0 auto;
         }
-        .listRow{
-            width:70%;
-            margin:0 auto;
-            padding-bottom:50px;
-            min-width:470px;
-        }
-            .listRow .leftHalf{
-                width:30%;
-                float:left;
-            }
-            .listRow .rightHalf{
-                width:47%;
-                float:right;
-            }
-            .listRow .removeButton{
-                min-width:70px;
-                float:left;
-                width:10%;
-                height:40px;
-                font-size:15;
-                margin-right:20px;
-            }
-            .listRow .qtyInputContainer{
-                float:left;
-                width:20%;
-            }
-                .listRow .qtyInputContainer .qtyInput{
-                    width:40%;
-                    /*float:right;*/
-                }
-            .listRow .nameInputContainer{
-                float:left;
-                width:50%;
-            }
-                .listRow .nameInputContainer .nameInput{
-                    width:100%;
-                }
-            
-            .listRow .completedInputContainer{
-                float:left;
-                width:50px;
-                height:50px;
-            }
-            .listRow .listInput{
-                height:40px;
-                margin:0 auto;
-                font-size:15;
-            }
         #welcome{
             padding-top:5px;
             padding-bottom:30px;
@@ -86,61 +31,226 @@
             #welcome #welcomeTitle{
                 font-size:45;
             }
-        #listEntry{
-            width:80%;
+        @media screen and (min-width:1024px){
+            body{
+            width:90%;
             margin:0 auto;
-            text-align:center;
-        }
-            #listEntry #listEntryArea{
-                width:100%;
-                max-width:700px;
             }
-        #formList{
-            margin:0 auto;
-            width:150px;
-            height:40px;
-            font-size:15;
-        }
-        #collapsable{
-            padding-bottom:25px;
-        }
-        #listSectionContainer{
-            padding-top:30px;
-            width:80%;
-            margin:0 auto;
-        }
-        #additionalButtons{
-            width:50%;
-            margin:0 auto;
-            align:center;
-            padding-bottom:30px;
-        }
-            #additionalButtons #collapseBtnContainer{
+            .button:hover{
+                background-color:#c2e0f9;
+                color:#ffffff;
+            }
+            .listRow{
+                width:70%;
+                margin:0 auto;
+                padding-bottom:50px;
+                min-width:470px;
+            }
+                .listRow .leftHalf{
+                    width:30%;
+                    float:left;
+                }
+                .listRow .rightHalf{
+                    width:47%;
+                    float:right;
+                }
+                .listRow .removeButton{
+                    min-width:70px;
+                    float:left;
+                    width:10%;
+                    height:40px;
+                    font-size:15;
+                    margin-right:20px;
+                }
+                .listRow .qtyInputContainer{
+                    float:left;
+                    width:20%;
+                }
+                    .listRow .qtyInputContainer .qtyInput{
+                        width:40%;
+                        /*float:right;*/
+                    }
+                .listRow .nameInputContainer{
+                    float:left;
+                    width:50%;
+                }
+                    .listRow .nameInputContainer .nameInput{
+                        width:100%;
+                    }
+                
+                .listRow .completedInputContainer{
+                    float:left;
+                    width:50px;
+                    height:50px;
+                }
+                .listRow .listInput{
+                    height:40px;
+                    margin:0 auto;
+                    font-size:15;
+                }
+            
+            #listEntry{
+                width:80%;
+                margin:0 auto;
+                text-align:center;
+            }
+                #listEntry #listEntryArea{
+                    width:100%;
+                    max-width:700px;
+                }
+            #formList{
+                margin:0 auto;
+                width:150px;
+                height:40px;
+                font-size:15;
+            }
+            #collapsable{
+                padding-bottom:25px;
+            }
+            #listSectionContainer{
+                padding-top:30px;
+                width:80%;
+                margin:0 auto;
+            }
+            #additionalButtons{
+                width:50%;
+                margin:0 auto;
+                align:center;
+                padding-bottom:30px;
+            }
+                #additionalButtons #collapseBtnContainer{
+                    margin:0 auto;
+                    width:40%;
+                }
+                    #additionalButtons #collapseBtnContainer button{
+                        width:100%;
+                        margin:0 auto;
+                        max-width:150px;
+                    }
+                #additionalButtons #listModifiersContainer{
+                    margin:0 auto;
+                }
+                    #additionalButtons #listModifiersContainer #add_btn{
+                        width:40%;
+                        max-width:150px;
+                        float:left;
+                    }
+                    #additionalButtons #listModifiersContainer #clear_btn{
+                        width:40%;
+                        float:right;
+                        max-width:150px;
+                    }
+                #additionalButtons .listModifier{
+                    font-size:15;
+                    width:50%;
+                }
+            }
+        @media screen and (min-width:768px) and (max-width:1024px){
+            body{
+                width:90%;
+                margin:0 auto;
+            }
+            #listSectionContainer{
+                width:90%;
+            }
+            
+            #listEntry{
+                width:90%;
+                margin:0 auto;
+                text-align:center;
+            }
+                #listEntry #listEntryArea{
+                    width:100%;
+                    max-width:700px;
+                }
+            #formList{
                 margin:0 auto;
                 width:40%;
+                height:40px;
+                font-size:15;
+            }
+            #listSectionContainer{
+                padding-top:30px;
+                width:80%;
+                margin:0 auto;
+            }
+            #additionalButtons{
+                width:70%;
+                margin:0 auto;
+                align:center;
+                padding-bottom:30px;
+            }
+            #additionalButtons #collapseBtnContainer{
+                margin:0 auto;
+                width:80%;
             }
                 #additionalButtons #collapseBtnContainer button{
                     width:100%;
                     margin:0 auto;
-                    max-width:150px;
+                    font-size:15;
                 }
             #additionalButtons #listModifiersContainer{
                 margin:0 auto;
             }
                 #additionalButtons #listModifiersContainer #add_btn{
                     width:40%;
-                    max-width:150px;
+                    
                     float:left;
                 }
                 #additionalButtons #listModifiersContainer #clear_btn{
                     width:40%;
                     float:right;
-                    max-width:150px;
+                    
                 }
             #additionalButtons .listModifier{
                 font-size:15;
                 width:50%;
             }
+            .listRow{
+                width:90%;
+                margin:0 auto;
+                padding-bottom:30px;
+               
+            }
+                .listRow .removeButton{
+                    min-width:70px;
+                    float:left;
+                    width:15%;
+                    height:40px;
+                    font-size:15;
+                    margin-right:20px;
+                }
+                .listRow .qtyInputContainer{
+                    float:left;
+                    width:20%;
+                }
+                    .listRow .qtyInputContainer .qtyInput{
+                        width:40%;
+                        /*float:right;*/
+                    }
+                .listRow .nameInputContainer{
+                    float:left;
+                    width:50%;
+                }
+                    .listRow .nameInputContainer .nameInput{
+                        width:100%;
+                    }
+                
+                .listRow .completedInputContainer{
+                    float:left;
+                    width:50px;
+                    height:50px;
+                }
+                .listRow .listInput{
+                    height:40px;
+                    margin:0 auto;
+                    font-size:15;
+                }
+            
+        }
+        @media screen and (max-width:768px){
+
+        }
     </style>
     <body ng-app="ListBuilderApp" ng-controller="mainCtrl">
         <div>
