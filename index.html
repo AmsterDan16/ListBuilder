@@ -13,6 +13,17 @@
         <link rel="stylesheet" type="text/css" href="listbuilder.css"/>
     </head>
     <style>
+        *{
+            font-family:Sans-serif;
+        }
+        #topBar{
+            background-color:#65b1f0;
+            position:fixed;
+            margin-top:0;
+            width:100%;
+            color:#ffffff;
+            height:75px;
+        }
         .button{
             padding:5px;
             background-color:#65b1f0;
@@ -20,6 +31,9 @@
             color:#ffffff;
         }
         .listItem{
+            margin:0 auto;
+        }
+        #start{
             margin:0 auto;
         }
         #welcome{
@@ -31,94 +45,88 @@
             #welcome #welcomeTitle{
                 font-size:45;
             }
-        @media screen and (min-width:1024px){
             body{
-            width:90%;
-            margin:0 auto;
-            }
-            .button:hover{
-                background-color:#c2e0f9;
-                color:#ffffff;
-            }
-            .listRow{
-                width:70%;
                 margin:0 auto;
-                padding-bottom:50px;
-                min-width:470px;
             }
-                .listRow .leftHalf{
-                    width:30%;
-                    float:left;
-                }
-                .listRow .rightHalf{
-                    width:47%;
-                    float:right;
-                }
-                .listRow .removeButton{
-                    min-width:70px;
-                    float:left;
-                    width:10%;
-                    height:40px;
-                    font-size:15;
-                    margin-right:20px;
-                }
-                .listRow .qtyInputContainer{
-                    float:left;
-                    width:20%;
-                }
-                    .listRow .qtyInputContainer .qtyInput{
-                        width:40%;
-                        /*float:right;*/
-                    }
-                .listRow .nameInputContainer{
-                    float:left;
-                    width:50%;
-                }
-                    .listRow .nameInputContainer .nameInput{
-                        width:100%;
-                    }
-                
-                .listRow .completedInputContainer{
-                    float:left;
-                    width:50px;
-                    height:50px;
-                }
-                .listRow .listInput{
-                    height:40px;
-                    margin:0 auto;
-                    font-size:15;
-                }
-            
             #listEntry{
-                width:80%;
                 margin:0 auto;
                 text-align:center;
             }
                 #listEntry #listEntryArea{
                     width:100%;
                     max-width:700px;
+                    font-size:16;
                 }
             #formList{
                 margin:0 auto;
-                width:150px;
+                width:40%;
                 height:40px;
                 font-size:15;
-            }
-            #collapsable{
-                padding-bottom:25px;
+                margin-top:5px;
             }
             #listSectionContainer{
                 padding-top:30px;
                 width:80%;
                 margin:0 auto;
             }
-            #additionalButtons{
+            
+        @media screen and (min-width:1024px){
+            #topBar p{
+                padding-left:30px;
+                text-align:left;
+                font-size:25;
+                font-weight:bold;
+                font-height:50px;
+                vertical-align:center;
+            }
+            #start{
+                padding-top:75px;
                 width:50%;
+                padding-bottom:30px;
+            }   
+                #start .button{
+                    height:40px;
+                    font-size:15;
+                }
+                #start #startButtonContainer{
+                    
+                    margin:0 auto;
+                }
+                #start #startBig_btn{
+                    width:45%;
+                    /*float:left;*/
+                    margin:0 auto;
+                }
+
+            #listEntry{
+                width:80%;
+            }
+            #collapsable{
+                padding-top:85px;
+            }
+            #additionalButtons{
                 margin:0 auto;
                 align:center;
                 padding-bottom:30px;
+                padding-top:75px;
             }
-                #additionalButtons #collapseBtnContainer{
+                #additionalButtons #listModifiersContainer{
+                    margin:0 auto;
+                    width:50%;
+                    text-align:justify;
+                }
+                    #additionalButtons #listModifiersContainer:after{
+                        display:inline-block;
+                        width:100%;
+                        content:'';
+                    }
+                #additionalButtons button{
+                    display:inline-block;
+                    height:40px;
+                    font-size:15;
+                    width:30%;
+                }
+                /*#additionalButtons #collapseBtnContainer{
                     margin:0 auto;
                     width:40%;
                 }
@@ -127,84 +135,94 @@
                         margin:0 auto;
                         max-width:150px;
                     }
+                #additionalButtons .listModifier{
+                    font-size:15;
+                    width:50%;
+                }
                 #additionalButtons #listModifiersContainer{
                     margin:0 auto;
-                }
-                    #additionalButtons #listModifiersContainer #add_btn{
+                }*/
+                    /*#additionalButtons #listModifiersContainer #add_btn{
                         width:40%;
-                        max-width:150px;
                         float:left;
                     }
                     #additionalButtons #listModifiersContainer #clear_btn{
                         width:40%;
                         float:right;
-                        max-width:150px;
-                    }
-                #additionalButtons .listModifier{
-                    font-size:15;
-                    width:50%;
-                }
+                        
+                    }*/
+               
+                
+            .button:hover{
+                background-color:#c2e0f9;
+                color:#ffffff;
             }
-        @media screen and (min-width:768px) and (max-width:1024px){
-            body{
-                width:90%;
-                margin:0 auto;
-            }
-            #listSectionContainer{
-                width:90%;
-            }
-            
-            #listEntry{
-                width:90%;
-                margin:0 auto;
-                text-align:center;
-            }
-                #listEntry #listEntryArea{
-                    width:100%;
-                    max-width:700px;
-                }
-            #formList{
-                margin:0 auto;
-                width:40%;
-                height:40px;
-                font-size:15;
-            }
-            #listSectionContainer{
-                padding-top:30px;
-                width:80%;
-                margin:0 auto;
-            }
-            #additionalButtons{
+
+            /***Styling for each row of the list****/
+            .listRow{
                 width:70%;
                 margin:0 auto;
-                align:center;
                 padding-bottom:30px;
+                min-width:470px;
             }
-            #additionalButtons #collapseBtnContainer{
-                margin:0 auto;
-                width:80%;
-            }
-                #additionalButtons #collapseBtnContainer button{
-                    width:100%;
+                .listRow .listInput{
+                    height:40px;
                     margin:0 auto;
                     font-size:15;
                 }
-            #additionalButtons #listModifiersContainer{
-                margin:0 auto;
+                .listRow table{
+                    width:100%;
+                }   
+                    .listRow tr{
+                    
+                    }
+                    .listRow table .removeTD{
+                        width:12%;
+                    }
+                        .listRow table .removeTD .removeButton{
+                            float:left;
+                            width:100%;
+                            height:40px;
+                            font-size:15;
+                        }
+                    .listRow table .nameTD{
+                        width:70%;
+                    }
+                        .listRow table .nameTD .nameInputContainer{
+                            width:80%;
+                            margin:0 auto;
+                        }
+                            .listRow table .nameTD .nameInput{
+                                width:100%;
+                            }
+                    .listRow table .completedTD{
+                        width:10%;
+                    }
+                        .listRow table .completedTD .completedInputContainer{
+                            float:left;
+                            width:25px;
+                            height:25px;
+                            border:1px solid #000000;
+                        }
+                        .listRow table .completedTD .completedInputContainer:hover{
+                            background-color:#f4b178;
+                        }
+                        .listRow table .completedTD .completedInputContainer .uncompleted{
+                            background-color:#ffffff;
+                        }
+                        .listRow table .completedTD .completedInputContainer .completed{
+                            background-color:#e27313;
+                        }
             }
-                #additionalButtons #listModifiersContainer #add_btn{
-                    width:40%;
-                    
-                    float:left;
-                }
-                #additionalButtons #listModifiersContainer #clear_btn{
-                    width:40%;
-                    float:right;
-                    
-                }
-            #additionalButtons .listModifier{
-                font-size:15;
-                width:50%;
+        @media screen and (min-width:768px) and (max-width:1024px){
+            #listSectionContainer{
+                width:90%;
+            }
+            #listEntry{
+                width:90%;
+            }  
+            #additionalButtons{
+                width:70%;
             }
             .listRow{
                 width:90%;
@@ -249,6 +267,15 @@
             
         }
         @media screen and (max-width:768px){
+            #welcome{
+                padding-top:0px;
+                padding-bottom:10px;
+                text-align:center;
+                margin:0 auto;
+            }
+                #welcome #welcomeTitle{
+                    font-size:35;
+                }
             #listEntry{
                 width:100%;
                 margin:0 auto;
@@ -338,28 +365,32 @@
   
         }
     </style>
+    
     <body ng-app="ListBuilderApp" ng-controller="mainCtrl">
+        <div id="topBar">
+            <p>ListBuilder</p>
+        </div>
         <div>
-            <div id="collapsable">
-                <div id="welcome">
-                    <h2 id="welcomeTitle">Welcome to ListBuilder</h2>
-                    <h3>A simple way to create and manage lists</h3>
+            <!--<div id="start">
+                <h3>Start your list...</h3>
+                <div id="startButtonContainer">
+                    <button id="startBig_btn" class="button" onclick="ShowHide()">Start big</button>
                 </div>
+            </div>-->
+            <div id="collapsable">
                 <div id="listEntry">
                     <p>Enter your list below in paragraph form. Split it up by commas and your list will be created automatically.</p>
-                    <textarea id="listEntryArea" placeholder="Enter list" autofocus="TRUE" rows="10" cols="80" ng-model="initialList"></textarea>
-                    <p>{{ initialList }} </p>
-                    <button id="formList" class="button" ng-click="formList()">Form List</button>
+                    <textarea id="listEntryArea" placeholder="Start your list" autofocus="TRUE" rows="10" cols="80" ng-model="initialList"></textarea>
+                    <!--<p>{{ initialList }} </p>-->
+                    <button id="formList" class="button" ng-click="FormList()">Form List</button>
                 </div>
             </div>
             <div id="listSectionContainer">
                 <div id="additionalButtons">
-                    <div id="collapseBtnContainer">
-                        <button id="showHide" class="button" onclick="ShowHide()">Hide</button>
-                    </div><br/>
                     <div id="listModifiersContainer">
-                        <button id="add_btn" class="button listModifier" ng-click="AddListItem()">Add</button>
-                        <button id="clear_btn" class="button listModifier" ng-click="ClearAll()">Clear</button>
+                        <button id="add_btn" class="button listModifier" ng-click="AddListItem()">Add New Item</button>
+                        <button id="showHide" class="button" onclick="ShowHide()">Show Bulk Editor</button>
+                        <button id="clear_btn" class="button listModifier" ng-click="Reset()">Reset List</button>
                     </div>
                 </div>
                 <div id="listContainer">
@@ -370,46 +401,50 @@
                         <!--{{ item }}-->
                         <!--<tableList info="item"></tableList>-->
                         <div class="listRow">
-                            <!--<div class="leftHalf">-->
-                                <button class="removeButton button" type="button" ng-click="RemoveItem(item)">Remove</button>
-                                <input type="hidden" id="rank" value="{{item.listIndex}}" type="number">
-                                <div class="qtyInputContainer">
-                                    <input class="listInput qtyInput form-control" name="quantity" placeholder="quantity" type="number" ng-model="item.quantity">
-                                </div>
-                            <!--</div>
-                            <div class="rightHalf">-->
-                                <div class="nameInputContainer">
-                                    <input class="listInput nameInput form-control"  name="name" type="text" placeholder="name" ng-model="item.name">
-                                </div>
-                                <div class="completedInputContainer">
-                                    <input class="cbInput form-control" type="checkbox" ng-click="CheckOffItem(item)" ng-checked="{{item.completed}}" value="{{item.completed}}" ng-model="item.completed">
-                                </div>
-                            <!--</div>-->
+                            <table>
+                                    <tr>
+                                        <td class="removeTD">
+                                            <button class="removeButton button" type="button" ng-click="RemoveItem(item)">Remove</button>
+                                            <input type="hidden" id="rank" value="{{item.listIndex}}" type="number">
+                                        </td>
+                                        <td class="nameTD">
+                                            <div class="nameInputContainer">
+                                                <input class="listInput nameInput form-control"  name="name" type="text" placeholder="name" ng-model="item.name">
+                                            </div>
+                                        </td>
+                                        <td class="completedTD">
+                                            <div class="completedInputContainer" ng-click="CheckOffItem(item)" ng-class="{'completed': completed}" ng-model="item.completed">
+                                                <!--<input class="cbInput form-control" type="checkbox" ng-click="CheckOffItem(item)" ng-checked="{{item.completed}}" value="{{item.completed}}" ng-model="item.completed">-->
+                                            </div>
+                                        </td>
+                                    </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <script>
-            //$('#additionalButtons').style.visibility = "hidden";
+   
             var buttons = document.getElementById("additionalButtons");
             var collapsingSection = document.getElementById("collapsable");
-            buttons.style.visibility = "hidden";
+            $('#collapsable').hide();
+            
             function ShowHide(){
-                $('#collapsable').slideToggle();
+                 $('#collapsable').slideToggle();
                 var btn_showHide = document.getElementById("showHide");
-                // if($('#additionalButtons').text() == "Show")
-                //     $('#additionalButtons').text() = "Hide";
-                // else
-                //     $('#additionalButtons').text() = "Show"; 
-                //buttons.slideToggle();
-                if($('#showHide').text() == "Show"){
+
+                if($('#showHide').text() == "Show Bulk Editor"){
+                    //$('#collapsable').style.visibility = "visible";
                     $('#showHide').text("Hide");
-                    //collapsingSection.style.visibility = "hidden";
+                    $('#listEntryArea').focus();
+                    //collapsingSection.style.display='unset';
                 }else{
-                    $('#showHide').text("Show"); 
-                    //collapsingSection.style.visibility = "visible";
-                }    
+                    //$('#collapsable').style.visibility = "hidden";
+                    $('#showHide').text("Show Bulk Editor");
+                    //collapsingSection.style.display='none'; 
+                }   
+                //$('#collapsable').slideToggle(); 
             }
             
 
@@ -419,11 +454,15 @@
                $scope.finalList = [];
                var basicListItem = {
                    listIndex: 0,
-                   quantity: 1,
                    name: "New",
                    completed: false
                };
-               $scope.formList = function(){
+            
+               $scope.Init = function(){
+                   var firstListItem = angular.copy(basicListItem);
+                   $scope.finalList.push(firstListItem);
+               }
+               $scope.FormList = function(){
                    
                    ShowHide();
                    var initList = $scope.initialList;
@@ -458,17 +497,20 @@
                    //add to top of list
                    $scope.finalList.splice(0,0, newListItem);
                }
-               $scope.ClearAll = function(){
+               $scope.Reset = function(){
                    $scope.initialList = [];
-                   $scope.finalList = [];//.splice(0, $scope.finalList.length);
-                   document.getElementById('listEntryArea').text = "";
-                   buttons.style.visibility = 'hidden';
-                   ShowHide();
+                   $scope.finalList = [];
+                   $scope.Init();
+                   //document.getElementById('listEntryArea').text = "";
+                   //buttons.style.visibility = 'hidden';
+                   //ShowHide();
                }
                $scope.CheckOffItem = function(item){
                    var currentIndex = $scope.finalList.indexOf(item);
                    //store checked off item, then remove it and place it at the end
                    var checkedItem = $scope.finalList[currentIndex];
+                   //flip completed property
+                   checkedItem.completed = !checkedItem.completed;
                    //if item just unchecked, move to top of checked off items
                    if(checkedItem.completed == false){
                        $scope.UncheckItem(checkedItem);
@@ -510,7 +552,7 @@
                    $scope.finalList.push(newItem);
                    
                }
-               
+               $scope.Init();
             });
             app.directive("tableList", function(){
                return {
