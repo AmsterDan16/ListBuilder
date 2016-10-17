@@ -10,7 +10,7 @@
         <link rel="shortcut icon" href="">
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="listbuilder.css"/>
+        <!--<link rel="stylesheet" type="text/css" href="listbuilder.css"/>-->
     </head>
     <style>
         *{
@@ -29,11 +29,12 @@
             background-color:#65b1f0;
             font-weight:"Bold";
             color:#ffffff;
+            border:none;
         }
         .listItem{
             margin:0 auto;
         }
-        #start{
+        /*#start{
             margin:0 auto;
         }
         #welcome{
@@ -44,7 +45,7 @@
         }
             #welcome #welcomeTitle{
                 font-size:45;
-            }
+            }*/
             body{
                 margin:0 auto;
             }
@@ -70,7 +71,7 @@
                 margin:0 auto;
             }
             
-        @media screen and (min-width:1024px){
+        @media screen and (min-width:768px){
             #topBar p{
                 padding-left:30px;
                 text-align:left;
@@ -79,7 +80,13 @@
                 font-height:50px;
                 vertical-align:center;
             }
-            #start{
+            #topBar #mobile_reset_btn{
+                display:none;
+            }
+            #mobile_add_btn{
+                display:none;
+            }
+            /*#start{
                 padding-top:75px;
                 width:50%;
                 padding-bottom:30px;
@@ -94,9 +101,9 @@
                 }
                 #start #startBig_btn{
                     width:45%;
-                    /*float:left;*/
+                    
                     margin:0 auto;
-                }
+                }*/
 
             #listEntry{
                 width:80%;
@@ -109,11 +116,14 @@
                 align:center;
                 padding-bottom:30px;
                 padding-top:75px;
+                
             }
                 #additionalButtons #listModifiersContainer{
                     margin:0 auto;
-                    width:50%;
+                    width:60%;
                     text-align:justify;
+                    /*white-space:nowrap;
+                    overflow:hidden;*/
                 }
                     #additionalButtons #listModifiersContainer:after{
                         display:inline-block;
@@ -126,31 +136,18 @@
                     font-size:15;
                     width:30%;
                 }
-                /*#additionalButtons #collapseBtnContainer{
-                    margin:0 auto;
-                    width:40%;
+                #additionalButtons #listModifiersContainer #showHide{
+                    white-space:nowrap;
+                    overflow:hidden;
+                    min-width:127px;
                 }
-                    #additionalButtons #collapseBtnContainer button{
-                        width:100%;
-                        margin:0 auto;
-                        max-width:150px;
-                    }
-                #additionalButtons .listModifier{
-                    font-size:15;
-                    width:50%;
+                /*#additionalButtons #add_btn{
+                    min-width:100px;
                 }
-                #additionalButtons #listModifiersContainer{
-                    margin:0 auto;
+                #additionatlButtons #clear_btn{
+                    min-width:130px;
                 }*/
-                    /*#additionalButtons #listModifiersContainer #add_btn{
-                        width:40%;
-                        float:left;
-                    }
-                    #additionalButtons #listModifiersContainer #clear_btn{
-                        width:40%;
-                        float:right;
-                        
-                    }*/
+        
                
                 
             .button:hover{
@@ -177,13 +174,16 @@
                     
                     }
                     .listRow table .removeTD{
-                        width:12%;
+                        width:8%;
                     }
                         .listRow table .removeTD .removeButton{
                             float:left;
                             width:100%;
                             height:40px;
-                            font-size:15;
+                            /*font-size:15;*/
+                            background-image:url("listbuilder/img/trash.png");
+                            background-size: 6px 6px;
+                            background-repeat:no-repeat;
                         }
                     .listRow table .nameTD{
                         width:70%;
@@ -210,11 +210,11 @@
                         .listRow table .completedTD .completedInputContainer .uncompleted{
                             background-color:#ffffff;
                         }
-                        .listRow table .completedTD .completedInputContainer .completed{
+                        .completed{
                             background-color:#e27313;
                         }
             }
-        @media screen and (min-width:768px) and (max-width:1024px){
+        /*@media screen and (min-width:768px) and (max-width:1024px){
             #listSectionContainer{
                 width:90%;
             }
@@ -244,7 +244,7 @@
                 }
                     .listRow .qtyInputContainer .qtyInput{
                         width:40%;
-                        /*float:right;*/
+                      
                     }
                 .listRow .nameInputContainer{
                     float:left;
@@ -265,19 +265,50 @@
                     font-size:15;
                 }
             
-        }
+        }*/
         @media screen and (max-width:768px){
-            #welcome{
-                padding-top:0px;
-                padding-bottom:10px;
-                text-align:center;
-                margin:0 auto;
+            #topBar p{
+                float:left;
+                padding-left:30px;
+                text-align:left;
+                font-size:25;
+                font-weight:bold;
+                font-height:50px;
+                vertical-align:center;
             }
-                #welcome #welcomeTitle{
-                    font-size:35;
+            #topBar #mobile_reset_btn{
+                float:right;
+                background-color:#ffffff;
+                color:#65b1f0;
+                display:unset;
+                border:none;
+                border-radius:3px;
+                width:25%;
+                height:100%;
+                font-size:15;
+                border-bottom:10px solid #65b1f0;
+            }
+            #mobile_add_btn{
+                display:unset;
+                position:fixed;
+                margin-top:90%;
+                margin-bottom:10%;
+                margin-left:85%;
+                background-color:orange;
+                border-radius:20px;
+                width:50px;
+                height:50px;
+                
+            }   
+                #mobile_add_btn p{
+                    text-align:center;
+                    font-size:25px;
+                    color:#ffffff;
+                    line-height:0px;      
                 }
             #listEntry{
-                width:100%;
+                padding-top:70px;
+                width:90%;
                 margin:0 auto;
                 text-align:center;
             }
@@ -302,28 +333,23 @@
                 align:center;
                 padding-bottom:30px;
             }
-            #additionalButtons #collapseBtnContainer{
-                margin:0 auto;
-                width:100%;
-            }
-                #additionalButtons #collapseBtnContainer button{
-                    width:100%;
-                    margin:0 auto;
-                    font-size:15;
-                }
             #additionalButtons #listModifiersContainer{
+                width:60%;
                 margin:0 auto;
             }
                 #additionalButtons #listModifiersContainer #add_btn{
-                    width:100%;
-                    margin-bottom:15px;
-                    font-size:15;
+                    display:none;
                 }
                 #additionalButtons #listModifiersContainer #clear_btn{
+                    display:none;
+                }
+                #additionalbuttons #listModifiersContainer #showHide{
+                    margin-top:60px;
                     width:100%;
+                    height:40px;
                     font-size:15;
                 }
-            .listRow{
+            /*.listRow{
                 width:100%;
                 margin:0 auto;
                 padding-bottom:30px;
@@ -343,7 +369,7 @@
                 }
                     .listRow .qtyInputContainer .qtyInput{
                         width:40%;
-                        /*float:right;*/
+                        
                     }
                 .listRow .nameInputContainer{
                     float:left;
@@ -361,14 +387,69 @@
                     height:40px;
                     margin:0 auto;
                     font-size:15;
-                }
-  
+                }*/
+            .listRow{
+                width:90%;
+                margin:0 auto;
+                padding-bottom:30px;
+            }
+                /*.listRow .listInput{
+                    height:40px;
+                    margin:0 auto;
+                    font-size:15;
+                }*/
+                .listRow table{
+                    width:100%;
+                }   
+                    .listRow tr{
+                    
+                    }
+                    .listRow table .removeTD{
+                        width:12%;
+                    }
+                        .listRow table .removeTD .removeButton{
+                            float:left;
+                            width:100%;
+                            height:40px;
+                            /*font-size:15;*/
+                            background-image:url("listbuilder/img/trash.png");
+                            background-size: 6px 6px;
+                            background-repeat:no-repeat;
+                        }
+                    .listRow table .nameTD{
+                        width:75%;
+                    }
+                        .listRow table .nameTD .nameInputContainer{
+                            width:90%;
+                            margin:0 auto;
+                        }
+                            .listRow table .nameTD .nameInput{
+                                height:40px;
+                                font-size:12;
+                                width:100%;
+                            }
+                    .listRow table .completedTD{
+                        width:10%;
+                    }
+                        .listRow table .completedTD .completedInputContainer{
+                            float:left;
+                            width:25px;
+                            height:25px;
+                            border:1px solid #000000;
+                        }
+                        .listRow table .completedTD .completedInputContainer:hover{
+                            background-color:#f4b178;
+                        }
+                        .completed{
+                            background-color:#e27313;
+                        }
         }
     </style>
     
     <body ng-app="ListBuilderApp" ng-controller="mainCtrl">
         <div id="topBar">
             <p>ListBuilder</p>
+            <button id="mobile_reset_btn" ng-click="Reset()">Reset</button>
         </div>
         <div>
             <!--<div id="start">
@@ -385,10 +466,13 @@
                     <button id="formList" class="button" ng-click="FormList()">Form List</button>
                 </div>
             </div>
+            <div id="mobile_add_btn" ng-click="AddListItem()">
+                <p>+</p>
+            </div>
             <div id="listSectionContainer">
                 <div id="additionalButtons">
                     <div id="listModifiersContainer">
-                        <button id="add_btn" class="button listModifier" ng-click="AddListItem()">Add New Item</button>
+                        <button id="add_btn" class="button listModifier" ng-click="AddListItem()">Add Item</button>
                         <button id="showHide" class="button" onclick="ShowHide()">Show Bulk Editor</button>
                         <button id="clear_btn" class="button listModifier" ng-click="Reset()">Reset List</button>
                     </div>
@@ -404,7 +488,10 @@
                             <table>
                                     <tr>
                                         <td class="removeTD">
-                                            <button class="removeButton button" type="button" ng-click="RemoveItem(item)">Remove</button>
+                                            <button class="removeButton button" type="button" ng-click="RemoveItem(item)"></button>
+                                            <!--<div class="removeDiv">
+                                                <img src="listbuilder/img/trash.png" width="20" height="20">
+                                            </div>-->
                                             <input type="hidden" id="rank" value="{{item.listIndex}}" type="number">
                                         </td>
                                         <td class="nameTD">
@@ -413,7 +500,7 @@
                                             </div>
                                         </td>
                                         <td class="completedTD">
-                                            <div class="completedInputContainer" ng-click="CheckOffItem(item)" ng-class="{'completed': completed}" ng-model="item.completed">
+                                            <div class="completedInputContainer" ng-click="CheckOffItem(item)" ng-class="{completed: item.completed}">
                                                 <!--<input class="cbInput form-control" type="checkbox" ng-click="CheckOffItem(item)" ng-checked="{{item.completed}}" value="{{item.completed}}" ng-model="item.completed">-->
                                             </div>
                                         </td>
@@ -523,6 +610,7 @@
                    //default the top checked index to the last element in case there is only one checked item
                    var topCheckedIndex = $scope.finalList.length - 1;
                    var currentItem;
+        
                    //find top completed item, and place newly unchecked item above that
                    for(var i = 0; i < $scope.finalList.length; i++){
                        currentItem = $scope.finalList[i];
@@ -531,11 +619,12 @@
                             break;
                        }
                    }
+                  
                    //remove item being unchecked
                    $scope.finalList.splice($scope.finalList.indexOf(item), 1);
-                   //place in correct spot
+                   //place in correct spot and change checked property
                    $scope.finalList.splice(topCheckedIndex,0,item);
-
+                   
                }
                //scan/clean the input, insert into final array and create the table on screen
                $scope.createListElement = function(listItem, index){
