@@ -2,19 +2,22 @@
     <head>
         <base href="/">
         <meta charset="utf-8">
-        <title></title>
+        <title>Listbuilder</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="">
-        
+        <meta name="robots" content=""> 
         <link rel="shortcut icon" href="">
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!--<link rel="stylesheet" type="text/css" href="listbuilder.css"/>-->
+        <link rel="stylesheet" type="text/css" href="listbuilder/style/listbuilder.css"/>
     </head>
     <style>
-        *{
+        /**{
             font-family:Sans-serif;
+        }
+        body{
+            margin:0 auto;
+            min-height:400px;
         }
         #topBar{
             background-color:#65b1f0;
@@ -24,6 +27,12 @@
             color:#ffffff;
             height:75px;
         }
+            #topBar p{
+                padding-left:30px;
+                text-align:left;
+                font-weight:bold;
+                vertical-align:center;
+            }
         .button{
             padding:5px;
             background-color:#65b1f0;
@@ -31,54 +40,78 @@
             color:#ffffff;
             border:none;
         }
+        #listEntry{
+            margin:0 auto;
+            text-align:center;
+        }
+            #listEntry #listEntryArea{
+                width:100%;
+                max-width:700px;
+                font-size:16;
+            }
+        #formList{
+            margin:0 auto;
+            width:40%;
+            height:40px;
+            font-size:15;
+            margin-top:5px;
+        }
+        #additionalButtons{
+            margin:0 auto;
+            align:center;
+            padding-bottom:30px;
+        }
+            #additionalButtons #listModifiersContainer{
+                margin:0 auto;
+                width:60%;
+            }
+        #listSectionContainer{
+            padding-top:30px;
+            width:80%;
+            margin:0 auto;
+        }
         .listItem{
             margin:0 auto;
         }
-        /*#start{
+        .listRow{
             margin:0 auto;
-        }
-        #welcome{
-            padding-top:5px;
             padding-bottom:30px;
-            text-align:center;
-            margin:0 auto;
         }
-            #welcome #welcomeTitle{
-                font-size:45;
-            }*/
-            body{
-                margin:0 auto;
-            }
-            #listEntry{
-                margin:0 auto;
-                text-align:center;
-            }
-                #listEntry #listEntryArea{
+            .listRow table{
+                width:100%;
+            }  
+                .listRow table .removeTD .removeButton{
+                    float:left;
                     width:100%;
-                    max-width:700px;
-                    font-size:16;
+                    height:40px;
+                    background-image:url("listbuilder/img/trash.png");
+                    background-size: 25px 30px;
+                    background-repeat:no-repeat;
+                    background-position:center;
                 }
-            #formList{
-                margin:0 auto;
-                width:40%;
-                height:40px;
-                font-size:15;
-                margin-top:5px;
-            }
-            #listSectionContainer{
-                padding-top:30px;
-                width:80%;
-                margin:0 auto;
-            }
+                .listRow table .nameTD .nameInput{
+                    height:40px;
+                    font-size:12;
+                    width:100%;
+                }
+                .listRow table .completedTD{
+                    width:10%;
+                }
+                    .listRow table .completedTD .completedInputContainer{
+                        float:left;
+                        width:25px;
+                        height:25px;
+                        border:1px solid #000000;
+                    }
             
         @media screen and (min-width:768px){
+            .button:hover{
+                background-color:#c2e0f9;
+                color:#ffffff;
+            }
             #topBar p{
-                padding-left:30px;
-                text-align:left;
-                font-size:25;
-                font-weight:bold;
-                font-height:50px;
-                vertical-align:center;
+                font-size:25;     
+                font-height:50px; 
             }
             #topBar #mobile_reset_btn{
                 display:none;
@@ -86,44 +119,17 @@
             #mobile_add_btn{
                 display:none;
             }
-            /*#start{
-                padding-top:75px;
-                width:50%;
-                padding-bottom:30px;
-            }   
-                #start .button{
-                    height:40px;
-                    font-size:15;
-                }
-                #start #startButtonContainer{
-                    
-                    margin:0 auto;
-                }
-                #start #startBig_btn{
-                    width:45%;
-                    
-                    margin:0 auto;
-                }*/
-
             #listEntry{
                 width:80%;
             }
             #collapsable{
                 padding-top:85px;
             }
-            #additionalButtons{
-                margin:0 auto;
-                align:center;
-                padding-bottom:30px;
+            #additionalButtons{ 
                 padding-top:75px;
-                
             }
                 #additionalButtons #listModifiersContainer{
-                    margin:0 auto;
-                    width:60%;
                     text-align:justify;
-                    /*white-space:nowrap;
-                    overflow:hidden;*/
                 }
                     #additionalButtons #listModifiersContainer:after{
                         display:inline-block;
@@ -140,51 +146,14 @@
                     white-space:nowrap;
                     overflow:hidden;
                     min-width:127px;
-                }
-                /*#additionalButtons #add_btn{
-                    min-width:100px;
-                }
-                #additionatlButtons #clear_btn{
-                    min-width:130px;
-                }*/
-        
-               
-                
-            .button:hover{
-                background-color:#c2e0f9;
-                color:#ffffff;
-            }
-
-            /***Styling for each row of the list****/
+                } 
             .listRow{
                 width:70%;
-                margin:0 auto;
-                padding-bottom:30px;
                 min-width:470px;
             }
-                .listRow .listInput{
-                    height:40px;
-                    margin:0 auto;
-                    font-size:15;
-                }
-                .listRow table{
-                    width:100%;
-                }   
-                    .listRow tr{
-                    
-                    }
                     .listRow table .removeTD{
                         width:8%;
-                    }
-                        .listRow table .removeTD .removeButton{
-                            float:left;
-                            width:100%;
-                            height:40px;
-                            /*font-size:15;*/
-                            background-image:url("listbuilder/img/trash.png");
-                            background-size: 6px 6px;
-                            background-repeat:no-repeat;
-                        }
+                    }      
                     .listRow table .nameTD{
                         width:70%;
                     }
@@ -192,113 +161,45 @@
                             width:80%;
                             margin:0 auto;
                         }
-                            .listRow table .nameTD .nameInput{
-                                width:100%;
-                            }
-                    .listRow table .completedTD{
-                        width:10%;
-                    }
-                        .listRow table .completedTD .completedInputContainer{
-                            float:left;
-                            width:25px;
-                            height:25px;
-                            border:1px solid #000000;
-                        }
                         .listRow table .completedTD .completedInputContainer:hover{
                             background-color:#f4b178;
                         }
-                        .listRow table .completedTD .completedInputContainer .uncompleted{
-                            background-color:#ffffff;
-                        }
-                        .completed{
-                            background-color:#e27313;
-                        }
+                .completed{
+                    background-color:#e27313;
+                }
             }
-        /*@media screen and (min-width:768px) and (max-width:1024px){
-            #listSectionContainer{
-                width:90%;
-            }
-            #listEntry{
-                width:90%;
-            }  
-            #additionalButtons{
-                width:70%;
-            }
-            .listRow{
-                width:90%;
-                margin:0 auto;
-                padding-bottom:30px;
-               
-            }
-                .listRow .removeButton{
-                    min-width:70px;
-                    float:left;
-                    width:15%;
-                    height:40px;
-                    font-size:15;
-                    margin-right:20px;
-                }
-                .listRow .qtyInputContainer{
-                    float:left;
-                    width:20%;
-                }
-                    .listRow .qtyInputContainer .qtyInput{
-                        width:40%;
-                      
-                    }
-                .listRow .nameInputContainer{
-                    float:left;
-                    width:50%;
-                }
-                    .listRow .nameInputContainer .nameInput{
-                        width:100%;
-                    }
-                
-                .listRow .completedInputContainer{
-                    float:left;
-                    width:50px;
-                    height:50px;
-                }
-                .listRow .listInput{
-                    height:40px;
-                    margin:0 auto;
-                    font-size:15;
-                }
-            
-        }*/
         @media screen and (max-width:768px){
+            #topBar{
+                height:50px;
+                line-height:20px;
+            }
             #topBar p{
                 float:left;
-                padding-left:30px;
-                text-align:left;
-                font-size:25;
-                font-weight:bold;
-                font-height:50px;
-                vertical-align:center;
+                font-size:20;
+                font-height:20px;
             }
             #topBar #mobile_reset_btn{
                 float:right;
                 background-color:#ffffff;
                 color:#65b1f0;
                 display:unset;
-                border:none;
-                border-radius:3px;
+                border-left:none;
+                border-right:none;
                 width:25%;
                 height:100%;
                 font-size:15;
                 border-bottom:10px solid #65b1f0;
+                border-top:10px solid #65b1f0;
             }
             #mobile_add_btn{
                 display:unset;
                 position:fixed;
-                margin-top:90%;
-                margin-bottom:10%;
-                margin-left:85%;
+                bottom:30;
+                right:10;
                 background-color:orange;
                 border-radius:20px;
                 width:50px;
-                height:50px;
-                
+                height:50px;  
             }   
                 #mobile_add_btn p{
                     text-align:center;
@@ -307,35 +208,26 @@
                     line-height:0px;      
                 }
             #listEntry{
-                padding-top:70px;
+                padding-top:55px;
                 width:90%;
-                margin:0 auto;
-                text-align:center;
             }
                 #listEntry #listEntryArea{
                     width:100%;
-        
                 }
             #formList{
                 margin:0 auto;
                 width:80%;
                 height:40px;
                 font-size:15;
+                margin-top:10px;
             }
             #listSectionContainer{
-                padding-top:30px;
+                padding-top:10px;
                 width:100%;
                 margin:0 auto;
             }
             #additionalButtons{
                 width:90%;
-                margin:0 auto;
-                align:center;
-                padding-bottom:30px;
-            }
-            #additionalButtons #listModifiersContainer{
-                width:60%;
-                margin:0 auto;
             }
                 #additionalButtons #listModifiersContainer #add_btn{
                     display:none;
@@ -349,101 +241,32 @@
                     height:40px;
                     font-size:15;
                 }
-            /*.listRow{
-                width:100%;
-                margin:0 auto;
-                padding-bottom:30px;
-               
-            }
-                .listRow .removeButton{
-                    min-width:70px;
-                    float:left;
-                    width:15%;
-                    height:40px;
-                    font-size:15;
-                    margin-right:5px;
-                }
-                .listRow .qtyInputContainer{
-                    float:left;
-                    width:20%;
-                }
-                    .listRow .qtyInputContainer .qtyInput{
-                        width:40%;
-                        
-                    }
-                .listRow .nameInputContainer{
-                    float:left;
-                    width:50%;
-                }
-                    .listRow .nameInputContainer .nameInput{
-                        width:100%;
-                    }
-                
-                .listRow .completedInputContainer{
-                    float:left;
-                  
-                }
-                .listRow .listInput{
-                    height:40px;
-                    margin:0 auto;
-                    font-size:15;
-                }*/
             .listRow{
                 width:90%;
-                margin:0 auto;
-                padding-bottom:30px;
             }
-                /*.listRow .listInput{
-                    height:40px;
-                    margin:0 auto;
-                    font-size:15;
-                }*/
-                .listRow table{
-                    width:100%;
-                }   
-                    .listRow tr{
-                    
+                .listRow table .removeTD{
+                    width:12%;
+                }
+                .listRow table .nameTD{
+                    width:75%;
+                }
+                    .listRow table .nameTD .nameInputContainer{
+                        width:90%;
+                        margin:0 auto;
+                    }     
+                .listRow table .completedTD{
+                    width:10%;
+                }
+                    .listRow table .completedTD .completedInputContainer{
+                        float:left;
+                        width:25px;
+                        height:25px;
+                        border:1px solid #000000;
                     }
-                    .listRow table .removeTD{
-                        width:12%;
-                    }
-                        .listRow table .removeTD .removeButton{
-                            float:left;
-                            width:100%;
-                            height:40px;
-                            /*font-size:15;*/
-                            background-image:url("listbuilder/img/trash.png");
-                            background-size: 6px 6px;
-                            background-repeat:no-repeat;
-                        }
-                    .listRow table .nameTD{
-                        width:75%;
-                    }
-                        .listRow table .nameTD .nameInputContainer{
-                            width:90%;
-                            margin:0 auto;
-                        }
-                            .listRow table .nameTD .nameInput{
-                                height:40px;
-                                font-size:12;
-                                width:100%;
-                            }
-                    .listRow table .completedTD{
-                        width:10%;
-                    }
-                        .listRow table .completedTD .completedInputContainer{
-                            float:left;
-                            width:25px;
-                            height:25px;
-                            border:1px solid #000000;
-                        }
-                        .listRow table .completedTD .completedInputContainer:hover{
-                            background-color:#f4b178;
-                        }
-                        .completed{
-                            background-color:#e27313;
-                        }
-        }
+            .completed{
+                background-color:#e27313;
+            }
+        }*/
     </style>
     
     <body ng-app="ListBuilderApp" ng-controller="mainCtrl">
@@ -452,17 +275,10 @@
             <button id="mobile_reset_btn" ng-click="Reset()">Reset</button>
         </div>
         <div>
-            <!--<div id="start">
-                <h3>Start your list...</h3>
-                <div id="startButtonContainer">
-                    <button id="startBig_btn" class="button" onclick="ShowHide()">Start big</button>
-                </div>
-            </div>-->
             <div id="collapsable">
                 <div id="listEntry">
                     <p>Enter your list below in paragraph form. Split it up by commas and your list will be created automatically.</p>
                     <textarea id="listEntryArea" placeholder="Start your list" autofocus="TRUE" rows="10" cols="80" ng-model="initialList"></textarea>
-                    <!--<p>{{ initialList }} </p>-->
                     <button id="formList" class="button" ng-click="FormList()">Form List</button>
                 </div>
             </div>
@@ -478,9 +294,9 @@
                     </div>
                 </div>
                 <div id="listContainer">
-                    <ul id="finalList"><!--<ul ng-bind="finalList">-->
+                    <!--<ul id="finalList">
                         
-                    </ul>
+                    </ul>-->
                     <div class="listItem" ng-repeat="item in finalList">
                         <!--{{ item }}-->
                         <!--<tableList info="item"></tableList>-->
@@ -489,9 +305,6 @@
                                     <tr>
                                         <td class="removeTD">
                                             <button class="removeButton button" type="button" ng-click="RemoveItem(item)"></button>
-                                            <!--<div class="removeDiv">
-                                                <img src="listbuilder/img/trash.png" width="20" height="20">
-                                            </div>-->
                                             <input type="hidden" id="rank" value="{{item.listIndex}}" type="number">
                                         </td>
                                         <td class="nameTD">
@@ -522,16 +335,11 @@
                 var btn_showHide = document.getElementById("showHide");
 
                 if($('#showHide').text() == "Show Bulk Editor"){
-                    //$('#collapsable').style.visibility = "visible";
                     $('#showHide').text("Hide");
                     $('#listEntryArea').focus();
-                    //collapsingSection.style.display='unset';
                 }else{
-                    //$('#collapsable').style.visibility = "hidden";
                     $('#showHide').text("Show Bulk Editor");
-                    //collapsingSection.style.display='none'; 
                 }   
-                //$('#collapsable').slideToggle(); 
             }
             
 
@@ -566,12 +374,6 @@
                         for(var i = 0, len = array.length;i < len; i++){                    
                             $scope.createListElement(array[i], i);
                         }
-                        //create list on page (non angular)
-                        // for(var i = 0, len = $scope.finalList.length; i < len; i++){
-                        //     var li = document.createElement("li");
-                        //     li.innerHTML = $scope.finalList[i];
-                        //     DOMlist.appendChild(li);
-                        // }
                   }
                   buttons.style.visibility = 'visible';
                } 
@@ -588,9 +390,6 @@
                    $scope.initialList = [];
                    $scope.finalList = [];
                    $scope.Init();
-                   //document.getElementById('listEntryArea').text = "";
-                   //buttons.style.visibility = 'hidden';
-                   //ShowHide();
                }
                $scope.CheckOffItem = function(item){
                    var currentIndex = $scope.finalList.indexOf(item);
@@ -612,7 +411,7 @@
                    var currentItem;
         
                    //find top completed item, and place newly unchecked item above that
-                   for(var i = 0; i < $scope.finalList.length; i++){
+                   for(var i = 0; i < $scope.finalList.length - 1; i++){
                        currentItem = $scope.finalList[i];
                        if(currentItem.completed){
                             topCheckedIndex = $scope.finalList.indexOf(currentItem);
