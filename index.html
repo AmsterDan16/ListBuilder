@@ -6,7 +6,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content=""> 
-        <link rel="shortcut icon" href="">
+        <link rel="shortcut icon" type="image/png" href="listbuilder/img/favicon(6).ico"/>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="listbuilder/style/listbuilder.css"/>
@@ -278,7 +278,7 @@
             <div id="collapsable">
                 <div id="listEntry">
                     <p>Enter your list below in paragraph form. Split it up by commas and your list will be created automatically.</p>
-                    <textarea id="listEntryArea" placeholder="Start your list" autofocus="TRUE" rows="10" cols="80" ng-model="initialList"></textarea>
+                    <textarea id="listEntryArea" placeholder="Start your list" autofocus="TRUE" rows="10" cols="80" ng-model="initialEntry"></textarea>
                     <button id="formList" class="button" ng-click="FormList()">Form List</button>
                 </div>
             </div>
@@ -294,12 +294,9 @@
                     </div>
                 </div>
                 <div id="listContainer">
-                    <!--<ul id="finalList">
-                        
-                    </ul>-->
                     <div class="listItem" ng-repeat="item in finalList">
                         <!--{{ item }}-->
-                        <!--<tableList info="item"></tableList>-->
+                        <!--<table-list info="item"></table-list>-->
                         <div class="listRow">
                             <table>
                                     <tr>
@@ -314,7 +311,6 @@
                                         </td>
                                         <td class="completedTD">
                                             <div class="completedInputContainer" ng-click="CheckOffItem(item)" ng-class="{completed: item.completed}">
-                                                <!--<input class="cbInput form-control" type="checkbox" ng-click="CheckOffItem(item)" ng-checked="{{item.completed}}" value="{{item.completed}}" ng-model="item.completed">-->
                                             </div>
                                         </td>
                                     </tr>
@@ -345,7 +341,7 @@
 
             var app = angular.module('ListBuilderApp', []);
             app.controller('mainCtrl', function($scope){
-               $scope.initialList = "";
+               $scope.initialEntry = "";
                $scope.finalList = [];
                var basicListItem = {
                    listIndex: 0,
@@ -357,19 +353,14 @@
                    var firstListItem = angular.copy(basicListItem);
                    $scope.finalList.push(firstListItem);
                }
-               $scope.FormList = function(){
-                   
+               $scope.FormList = function(){   
                    ShowHide();
-                   var initList = $scope.initialList;
-                   var DOMlist = document.getElementById("finalList");
-                   //clear DOMlist and finalList to refresh upon resubmit
-                   while(DOMlist.firstChild){
-                       DOMlist.removeChild(DOMlist.firstChild);
-                   }
+                   var initList = $scope.initialEntry;
+                   //clear finalList to refresh upon resubmit
                    $scope.finalList = [];
-                  //declare array
-                  var array = initList.split(",");
-                  if(array.length > 0){
+    
+                   var array = initList.split(",");
+                   if(array.length > 0){
                         //insert into final array
                         for(var i = 0, len = array.length;i < len; i++){                    
                             $scope.createListElement(array[i], i);
@@ -387,7 +378,7 @@
                    $scope.finalList.splice(0,0, newListItem);
                }
                $scope.Reset = function(){
-                   $scope.initialList = [];
+                   $scope.initialEntry = [];
                    $scope.finalList = [];
                    $scope.Init();
                }
@@ -395,15 +386,16 @@
                    var currentIndex = $scope.finalList.indexOf(item);
                    //store checked off item, then remove it and place it at the end
                    var checkedItem = $scope.finalList[currentIndex];
-                   //flip completed property
-                   checkedItem.completed = !checkedItem.completed;
-                   //if item just unchecked, move to top of checked off items
-                   if(checkedItem.completed == false){
+                   
+                   //if item currently checked, uncheck and move to top of checked off items
+                   if(checkedItem.completed){
                        $scope.UncheckItem(checkedItem);
                    }else{
                        $scope.finalList.splice(currentIndex,1);
                        $scope.finalList.push(checkedItem);
                    }
+                   //flip completed property
+                   checkedItem.completed = !checkedItem.completed;
                }
                $scope.UncheckItem = function(item){
                    //default the top checked index to the last element in case there is only one checked item
@@ -447,12 +439,12 @@
                    scope: {
                        info: '='
                    },
-                   templateUrl:'js/tableList.html',
-                   controller: function( $scope){
-                       $scope.add = function() {
+                   templateUrl:'listbuilder/js/tableList.html'//,
+                //    link: function(scope){
+                //        scope.FormList(){
 
-                       }
-                   }
+                //        };
+                   //}
                }; 
             });
         </script>
