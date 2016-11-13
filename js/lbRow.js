@@ -2,8 +2,8 @@ app.directive('lbRow', function(){
     return {
         restrict:'E',
         scope: {
-            item: '=info',
-            items: '=infolist'
+            item: '=lbItem',
+            items: '=lbItems'
         },
         replace:true,
         templateUrl:'listbuilder/js/lbRow.html',
