@@ -1,0 +1,19 @@
+<div class="listRow">
+    <table>
+            <tr>
+                <td class="removeTD">
+                    <button class="removeButton button" type="button" ng-click="RemoveItem(item)"></button>
+                    <input type="hidden" id="rank" value="{{item.listIndex}}" type="number">
+                </td>
+                <td class="nameTD">
+                    <div class="nameInputContainer">
+                        <input class="listInput nameInput form-control"  name="name" type="text" placeholder="New Item" ng-model="item.name" focus="$first">
+                    </div>
+                </td>
+                <td class="completedTD">
+                    <div class="completedInputContainer" ng-click="CheckOffItem(item)" ng-class="{completed: item.completed}">
+                    </div>
+                </td>
+            </tr>
+    </table>
+</div>
