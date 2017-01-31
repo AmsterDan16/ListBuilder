@@ -8,10 +8,19 @@ app.directive('lbRow', function(){
         replace:true,
         templateUrl:'listbuilder/js/lbRow.html',
         link: function(scope, element, attrs){
+            /**
+            * Removes given item from the to-do list
+            * @param {Object} item
+            **/
             scope.RemoveItem = function(item){
                 var itemIndex = scope.items.indexOf(item);
                 scope.items.splice(itemIndex, 1);
             }
+            
+            /**
+            * Checks off given item and moves it to the bottom of the to-do list array
+            * @param {Object} item
+            **/
             scope.CheckOffItem = function(item){
                 var currentIndex = scope.items.indexOf(item);
                 //store checked off item, then remove it and place it at the end
@@ -27,6 +36,11 @@ app.directive('lbRow', function(){
                 //flip completed property
                 checkedItem.completed = !checkedItem.completed;
             }
+            
+            /**
+            * Unchecks given item and moves it above the completed items group of the to-do list array
+            * @param {Object} item
+            **/
             scope.UncheckItem = function(item){
                 //default the top checked index to the last element in case there is only one checked item
                 var topCheckedIndex = scope.items.length - 1;

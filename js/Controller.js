@@ -7,10 +7,17 @@ app.controller('mainCtrl', ['$scope', function($scope){
         completed: false
     };
 
+    /**
+    * Initializes the list array and pushes an empty item
+    **/
     $scope.Init = function(){
         var firstListItem = angular.copy(basicListItem);
         $scope.finalList.push(firstListItem);
     }
+    
+    /**
+    * Generates item list after paragraph bulk item entry
+    **/
     $scope.FormList = function(){   
         ShowHide();
         var initList = $scope.initialEntry;
@@ -26,17 +33,30 @@ app.controller('mainCtrl', ['$scope', function($scope){
         }
         buttons.style.visibility = 'visible';
     } 
+    
+    /**
+    * Adds a single new item to the front of the item array
+    **/
     $scope.AddListItem = function (){
         var newListItem = angular.copy(basicListItem);
         //add to top of list
         $scope.finalList.splice(0,0, newListItem);
     }
+    
+    /**
+    * Resets initial and final item arrays and clears the forms
+    **/
     $scope.Reset = function(){
         $scope.initialEntry = [];
         $scope.finalList = [];
         $scope.Init();
     }
-    //scan and clean the input, insert into final array and create the table on screen
+    
+    /**
+    * Scans and cleans input, then inserts into final array 
+    * @param {String} listItem
+    * @param {Number} index
+    **/
     $scope.CheckAndInsertItemFromBulkListEntry = function(listItem, index){
         
         //check item before inserting into final array?
@@ -50,5 +70,7 @@ app.controller('mainCtrl', ['$scope', function($scope){
         newItem.listIndex = index;
         $scope.finalList.push(newItem);   
     }
+    
+    //called first thing
     $scope.Init();
 }]);
