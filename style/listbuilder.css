@@ -71,7 +71,7 @@ body{
             width:100%;
             height:40px;
             /*font-size:15;*/
-            background-image:url("../img/trash.png");
+            background-image:url("../img/whiteTrash.png");
             background-size: 25px 30px;
             background-repeat:no-repeat;
             background-position:center;
@@ -98,7 +98,7 @@ body{
     }
     #topBar p{
         font-size:25;     
-        font-height:50px; 
+        line-height:50px; 
     }
     #topBar #mobile_reset_btn{
         display:none;
@@ -165,7 +165,6 @@ body{
     #topBar p{
         float:left;
         font-size:20;
-        font-height:20px;
     }
     #topBar #mobile_reset_btn{
         float:right;
@@ -183,7 +182,7 @@ body{
     #mobile_add_btn{
         display:unset;
         position:fixed;
-        bottom:30;
+        top:70;
         right:10;
         background-color:orange;
         border-radius:20px;
