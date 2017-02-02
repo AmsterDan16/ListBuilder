@@ -4,15 +4,15 @@ app.controller('mainCtrl', ['$scope', function($scope){
     var basicListItem = {
         listIndex: 0,
         name: "",
-        completed: false
+        completed: false,
+        first:true
     };
 
     /**
     * Initializes the list array and pushes an empty item
     **/
     $scope.Init = function(){
-        var firstListItem = angular.copy(basicListItem);
-        $scope.finalList.push(firstListItem);
+        $scope.AddListItem();
     }
     
     /**
@@ -32,6 +32,10 @@ app.controller('mainCtrl', ['$scope', function($scope){
             }
         }
         buttons.style.visibility = 'visible';
+        //unset the focus property to prevent scrolling to the bottom of the page
+        for(var i = 0; i < $scope.finalList.length; i++){
+            $scope.finalList[i].first = false;   
+        }
     } 
     
     /**

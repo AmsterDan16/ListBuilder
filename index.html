@@ -19,7 +19,7 @@
         <div>
             <div id="collapsable">
                 <div id="listEntry">
-                    <p>Enter your list below in paragraph form. Split it up by commas and your list will be created automatically.</p>
+                    <p>Enter your list below. Split by commas to generate it automatically.</p>
                     <textarea id="listEntryArea" placeholder="Start your list"  rows="10" cols="80" ng-model="initialEntry"></textarea>
                     <button id="formList" class="button" ng-click="FormList()">Form List</button>
                 </div>
@@ -47,7 +47,7 @@
             </div>
         </div>
         <script>
-   
+            
             var buttons = document.getElementById("additionalButtons");
             var collapsingSection = document.getElementById("collapsable");
             $('#collapsable').hide();
@@ -59,14 +59,18 @@
                 if($('#showHide').text() == "Show Bulk Editor"){
                     $('#showHide').text("Hide");
                     $('#listEntryArea').focus();
+                    $('#mobile_add_btn').hide();
                 }else{
                     $('#showHide').text("Show Bulk Editor");
+                    $('#mobile_add_btn').show();
                 }   
             }
+            
         </script>
        <!--Angular Scripts-->
         <script src="listbuilder/js/app.js"></script>
         <script src="listbuilder/js/Controller.js"></script>
+        <script src="listbuilder/js/focus.js"></script>
         <script src="listbuilder/js/lbRow.js"></script>
     </body>
 </html>
