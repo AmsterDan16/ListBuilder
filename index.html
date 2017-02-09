@@ -32,7 +32,7 @@
                     <div id="listModifiersContainer">
                         <button id="add_btn" class="button listModifier" ng-click="AddListItem()">Add Item</button>
                         <button id="showHide" class="button" onclick="ShowHide()">Show Bulk Editor</button>
-                        <button id="clear_btn" class="button listModifier" ng-click="Reset()">Reset List</button>
+                        <button id="clear_btn" class="button listModifier" onclick="DOMReset()" ng-click="Reset()">Reset List</button>
                     </div>
                 </div>
                 <div id="listContainer">
@@ -64,6 +64,13 @@
                     $('#showHide').text("Show Bulk Editor");
                     $('#mobile_add_btn').show();
                 }   
+            }
+            
+            //hides bulk entry if open at the time of reset
+            function DOMReset(){
+                if($('#showHide').text() !== "Show Bulk Editor"){
+                    ShowHide();
+                }
             }
             
         </script>

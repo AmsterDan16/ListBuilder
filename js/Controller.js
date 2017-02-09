@@ -7,12 +7,29 @@ app.controller('mainCtrl', ['$scope', function($scope){
         completed: false,
         first:true
     };
+    $scope.hasStorage = false;
 
     /**
-    * Initializes the list array and pushes an empty item
+    * Initializes by checking localStorage for a stored list. If there is none, a new one is started
     **/
     $scope.Init = function(){
-        $scope.AddListItem();
+        //check if browser capable of localStorage
+        if(typeof(Storage) !== "undefined"){
+            $scope.hasStorage = true;
+            if(localStorage.getItem("bulkList")){
+                var bulk = localStorage.getItem("bulkList");
+                $scope.initialEntry = JSON.parse(bulk).join();
+                if($scope.initialEntry == ""){
+                    $scope.AddListItem();
+                }else{
+                    $scope.FormList();
+                }
+            }else{
+                $scope.AddListItem(); 
+            }
+        }else{
+            $scope.AddListItem();
+        }
     }
     
     /**
@@ -26,6 +43,10 @@ app.controller('mainCtrl', ['$scope', function($scope){
 
         var array = initList.split(",");
         if(array.length > 0){
+            if($scope.hasStorage){
+                //store bulk list string in localStorage
+                localStorage.setItem("bulkList", JSON.stringify(array));//$scope.initialEntry);
+            }
             //insert into final array
             for(var i = 0, len = array.length;i < len; i++){                    
                 $scope.CheckAndInsertItemFromBulkListEntry(array[i], i);
@@ -45,6 +66,19 @@ app.controller('mainCtrl', ['$scope', function($scope){
         var newListItem = angular.copy(basicListItem);
         //add to top of list
         $scope.finalList.splice(0,0, newListItem);
+        if($scope.hasStorage){
+            $scope.AddToStorage();
+        }
+    }
+    
+    /**
+    * Insert newly added items to localstorage
+    **/
+    $scope.AddToStorage = function(){
+        var stored = localStorage.getItem("bulkList");
+        var storedArr = JSON.parse(stored);
+        storedArr.splice(0,0,"");
+        localStorage.setItem("bulkList", JSON.stringify(storedArr));
     }
     
     /**
@@ -53,6 +87,10 @@ app.controller('mainCtrl', ['$scope', function($scope){
     $scope.Reset = function(){
         $scope.initialEntry = [];
         $scope.finalList = [];
+        if($scope.hasStorage){
+            //kill storage session to get a fresh reset
+            localStorage.setItem("bulkList", JSON.stringify([]));
+        }
         $scope.Init();
     }
     

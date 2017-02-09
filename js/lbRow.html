@@ -7,7 +7,7 @@
                 </td>
                 <td class="nameTD">
                     <div class="nameInputContainer">
-                        <input class="listInput nameInput form-control" focus="{{item.first}}" name="name" type="text" placeholder="New Item" ng-model="item.name">
+                        <input class="listInput nameInput form-control" ng-blur="UpdateStorage($event, item)" value="{{item.name}}" focus="{{item.first}}" name="name" type="text" placeholder="New Item" ng-model="item.name">
                     </div>
                 </td>
                 <td class="completedTD">

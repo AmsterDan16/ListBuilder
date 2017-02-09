@@ -61,6 +61,18 @@ app.directive('lbRow', function(){
                 scope.items.splice(topCheckedIndex,0,item);
                 
             }
+            
+            /**
+            * updates the localStorage variable with freshly updated item 
+            * @param {Object} item
+            **/
+            scope.UpdateStorage = function(e, item){
+                var index = scope.items.indexOf(item);
+                var stored = localStorage.getItem("bulkList");
+                var storedArr = JSON.parse(stored);
+                storedArr[index] = e.target.value;
+                localStorage.setItem("bulkList", JSON.stringify(storedArr));
+            }
         }
     }; 
 });
