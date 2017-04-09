@@ -14,6 +14,7 @@ app.directive('lbRow', function(){
             **/
             scope.RemoveItem = function(item){
                 var itemIndex = scope.items.indexOf(item);
+                scope.RemoveFromStorageAtIndex(itemIndex);
                 scope.items.splice(itemIndex, 1);
             }
             
@@ -71,6 +72,17 @@ app.directive('lbRow', function(){
                 var stored = localStorage.getItem("bulkList");
                 var storedArr = JSON.parse(stored);
                 storedArr[index] = e.target.value;
+                localStorage.setItem("bulkList", JSON.stringify(storedArr));
+            }
+            
+            /**
+            * updates the localStorage variable with deleted item
+            * @param {Number} index
+            **/
+            scope.RemoveFromStorageAtIndex = function(index){
+                var stored = localStorage.getItem("bulkList");
+                var storedArr = JSON.parse(stored);
+                storedArr.splice(index,1);
                 localStorage.setItem("bulkList", JSON.stringify(storedArr));
             }
         }

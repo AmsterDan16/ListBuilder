@@ -7,7 +7,7 @@ app.controller('mainCtrl', ['$scope', function($scope){
         completed: false,
         first:true
     };
-    $scope.hasStorage = false;
+    $scope.hasStorageCapability = false;
 
     /**
     * Initializes by checking localStorage for a stored list. If there is none, a new one is started
@@ -15,10 +15,10 @@ app.controller('mainCtrl', ['$scope', function($scope){
     $scope.Init = function(){
         //check if browser capable of localStorage
         if(typeof(Storage) !== "undefined"){
-            $scope.hasStorage = true;
+            $scope.hasStorageCapability = true;
             if(localStorage.getItem("bulkList")){
                 var bulk = localStorage.getItem("bulkList");
-                $scope.initialEntry = JSON.parse(bulk).join();
+                $scope.initialEntry = JSON.parse(bulk).filter(RemoveEmpties).join();
                 if($scope.initialEntry == ""){
                     $scope.AddListItem();
                 }else{
@@ -43,7 +43,7 @@ app.controller('mainCtrl', ['$scope', function($scope){
 
         var array = initList.split(",");
         if(array.length > 0){
-            if($scope.hasStorage){
+            if($scope.hasStorageCapability){
                 //store bulk list string in localStorage
                 localStorage.setItem("bulkList", JSON.stringify(array));//$scope.initialEntry);
             }
@@ -65,8 +65,12 @@ app.controller('mainCtrl', ['$scope', function($scope){
     $scope.AddListItem = function (){
         var newListItem = angular.copy(basicListItem);
         //add to top of list
-        $scope.finalList.splice(0,0, newListItem);
-        if($scope.hasStorage){
+        if($scope.finalList.length == 0){
+            $scope.finalList.push(newListItem);
+        }else{
+            $scope.finalList.unshift(newListItem);
+        }
+        if($scope.hasStorageCapability){
             $scope.AddToStorage();
         }
     }
@@ -77,8 +81,14 @@ app.controller('mainCtrl', ['$scope', function($scope){
     $scope.AddToStorage = function(){
         var stored = localStorage.getItem("bulkList");
         var storedArr = JSON.parse(stored);
-        storedArr.splice(0,0,"");
-        localStorage.setItem("bulkList", JSON.stringify(storedArr));
+        if(storedArr !== null){
+            if(storedArr.length == 0){
+                storedArr.push("");
+            }else{
+                storedArr.unshift("");
+            }
+            localStorage.setItem("bulkList", JSON.stringify(storedArr));
+        }     
     }
     
     /**
@@ -87,7 +97,7 @@ app.controller('mainCtrl', ['$scope', function($scope){
     $scope.Reset = function(){
         $scope.initialEntry = [];
         $scope.finalList = [];
-        if($scope.hasStorage){
+        if($scope.hasStorageCapability){
             //kill storage session to get a fresh reset
             localStorage.setItem("bulkList", JSON.stringify([]));
         }
@@ -113,6 +123,14 @@ app.controller('mainCtrl', ['$scope', function($scope){
         $scope.finalList.push(newItem);   
     }
     
-    //called first thing
+    /**
+    * Used for filtering array and removing empty items
+    * @param {String} item
+    **/
+    function RemoveEmpties(item){
+        return item != "";   
+    }
+    
+    //called on load
     $scope.Init();
 }]);

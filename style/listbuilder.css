@@ -44,7 +44,6 @@ body{
 }
 #additionalButtons{
     margin:0 auto;
-    align:center;
     padding-bottom:30px;
 }
     #additionalButtons #listModifiersContainer{
@@ -106,6 +105,9 @@ body{
     #mobile_add_btn{
         display:none;
     }
+        #mobile_add_btn p{
+            display:none;    
+        }
     #listEntry{
         width:80%;
     }
