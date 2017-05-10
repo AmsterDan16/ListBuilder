@@ -41,7 +41,7 @@ app.controller('mainCtrl', ['$scope', function($scope){
         //clear finalList to refresh upon resubmit
         $scope.finalList = [];
 
-        var array = initList.split(",");
+        var array = initList.replace(/\n/g, ",").split(",");
         if(array.length > 0){
             if($scope.hasStorageCapability){
                 //store bulk list string in localStorage
